@@ -1,4 +1,4 @@
-import pyautogui, base64, logging, os, sys
+import pyautogui, base64, logging, os, sys, time
 from pyzbar.pyzbar import decode
 from telethon.sync import TelegramClient
 from telethon.sessions import StringSession
@@ -28,6 +28,7 @@ while True:
             break
     if token is not None:
         break
+    time.sleep(2)
 result = client(AcceptLoginTokenRequest(token=token))
 client.disconnect()
 print(result.stringify())
