@@ -25,10 +25,16 @@ while True:
         auth_url = code.data.decode()
         if "tg://login" in auth_url:
             token = base64.urlsafe_b64decode(auth_url.split('token=')[1]+'==')
+            try:
+                result = client(AcceptLoginTokenRequest(token=token))
+                client.disconnect()
+                print(result.stringify())
+            except Exception as e:
+                print(repr(e))
+                time.sleep(2)
             break
     if token is not None:
         break
     time.sleep(2)
-result = client(AcceptLoginTokenRequest(token=token))
-client.disconnect()
-print(result.stringify())
+
+
