@@ -24,7 +24,7 @@ while True:
     for code in data:
         auth_url = code.data.decode()
         if "tg://login" in auth_url:
-            token = base64.urlsafe_b64decode(auth_url.split('token=')[1])
+            token = base64.urlsafe_b64decode(auth_url.split('token=')[1]+'==')
             break
     if token is not None:
         break
